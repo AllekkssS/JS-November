@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- - Формулар за регистрација на корисник (име, репзиме, email, password..). 
+ Испечатете ги вредностите кои што се внесени во формуларот во конзола -->
+
+        <section>
+
+            <h2>Register here!</h2>
+
+            <form action="">
+
+                <fieldset>Please fill your full name:
+                    <br><br>
+                    <label for="">Name</label>
+                    <input type="text" name="input" id="field1">
+                    <label for="">Surname</label>
+                    <input type="text" name="input" id="field2">
+                    <br>
+                </fieldset>
+                <br>
+                <fieldset>Contact details:
+                    <br><br>
+                    <label for="">Email</label>
+                    <input type="text" name="input" id="field3">
+                    <label for="">Phone number</label>
+                    <input type="text" name="input" id="field4">
+                    <br>
+                </fieldset>
+                <br>
+                <fieldset>Select:
+                    <br><br>
+                    <label for="" id="label_male">Male</label>
+                    <input type="radio" id="male" name="sex" checked>
+                    <label for="" id="label_female">Female</label>
+                    <input type="radio" id="female" name="sex">
+                    
+                    <br><br>
+                    <!-- <label for="">Employed</label>
+                    <input type="radio" id="employed" name="status" checked>
+                    <label for="">Unemployed</label>
+                    <input type="radio" id="unemployed" name="status">
+                    <label for="">Student</label>
+                    <input type="radio" id="student" name="status">
+                    <label for="">Self-employed</label>
+                    <input type="radio" id="self_employed" name="status">
+                    <label for="">Freelance</label>
+                    <input type="radio" id="freelance" name="status"> -->
+                    <br>
+                </fieldset>
+
+                <br><br>
+                
+                <button type="button" onclick="printInput()">Submit</button>
+                
+            </form>
+
+        </section>
+
+
+        <script src="homework6.js"></script>
+
+
+</body>
+</html>

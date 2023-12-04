@@ -4,15 +4,30 @@
 window.onload = function() {
 
 
+    // Test - access API
+
+    fetch("https://swapi.dev/api/people")
+    .then(response=>response.json())
+    .then(json=>{
+       console.log(json.results)
+       let users = json.results
+       for (user of users){
+          console.log(user.name, user.mass)
+       }
+    })
+
+    // Option 1 - ordered list
+
     function createList() {
-        fetch("https://jsonplaceholder.typicode.com/users")
+        fetch("https://swapi.dev/api/people")
         .then((response)=>response.json())
-        .then((info)=>{
+        .then(data=>{
             const list = document.createElement("ol")
             document.body.appendChild(list)
-            info.forEach((person)=>{
+            let characters = data.results
+            characters.forEach((character)=>{
                 const listItem = document.createElement("li")
-                listItem.textContent = person.name
+                listItem.textContent = character.name
                 list.appendChild(listItem)
             })
         }).catch((error)=>console.log(error))
@@ -20,15 +35,19 @@ window.onload = function() {
 
     createList()
 
+    // Option 2 - ordered list
+   
+
     async function createListAsync() {
         try{
-            const response = await fetch("https://jsonplaceholder.typicode.com/users")
+            const response = await fetch("https://swapi.dev/api/people")
             const info = await response.json()
             const list = document.createElement("ol")
             document.body.appendChild(list)
-            info.forEach((person)=>{
+            let characters = info.results
+            characters.forEach((character)=>{
                 const listItem = document.createElement("li")
-                listItem.textContent = person.name + " " + person.email
+                listItem.textContent = character.name + " " + character.birth_year
                 list.appendChild(listItem)
             })
         }catch(error){console.log(error)}
@@ -36,4 +55,48 @@ window.onload = function() {
 
     createListAsync()
 
+    // Option 2  - table
+
+    async function createTableAsync() {
+        try{
+            const response = await fetch("https://swapi.dev/api/people")
+            const infoFromApi = await response.json()
+            const table = document.createElement("table")
+            const caption = document.createElement("caption")
+            caption.textContent = "Characters Star Wars"
+            table.appendChild(caption)
+            document.body.appendChild(table)
+            table.setAttribute("border", "5px", "solid")
+
+            let characters = infoFromApi.results
+
+            let keysFromApi = characters[0]
+            //console.log(keysFromApi)
+            let mainRow = document.createElement("tr")
+            for(key in keysFromApi) {
+                let secondRow = document.createElement("th")
+                secondRow.innerText = key
+                mainRow.appendChild(secondRow)
+            }
+
+            table.appendChild(mainRow)
+
+            for(character of characters) {
+                let thirdRow = document.createElement("tr")
+                for(key in character) {
+                    let content = document.createElement("td")
+                    content.innerText = character[key]
+                    thirdRow.appendChild(content)
+                }
+                table.appendChild(thirdRow)
+            }
+            
+        }catch(error){console.log(error)}
+        
+    }
+
+    createTableAsync()
+   
+
 }
+
